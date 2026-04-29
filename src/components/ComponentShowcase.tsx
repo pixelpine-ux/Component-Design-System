@@ -20,7 +20,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Calendar } from "./ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { AlertCircle, Bell, Check, X, Info, ChevronRight, Code2 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { CodeBlock } from "./CodeBlock";
 
 export function ComponentShowcase() {
