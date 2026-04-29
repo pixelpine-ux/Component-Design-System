@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { GettingStarted } from "./components/GettingStarted";
 import { DesignPrinciples } from "./components/DesignPrinciples";
@@ -27,12 +27,11 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Show scroll to top button when scrolled down
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setShowScrollTop(window.scrollY > 500);
-    });
-  }
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 500);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigation = [
     { id: "overview", label: "Overview" },
@@ -86,7 +85,7 @@ export default function App() {
             </div>
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/pixelpine-ux/Component-Design-System" target="_blank" rel="noopener noreferrer">
                   <Github className="w-5 h-5" />
                 </a>
               </Button>
@@ -191,27 +190,23 @@ export default function App() {
             <div>
               <h4 className="mb-4">Resources</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Components</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Playground</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Guidelines</a></li>
+                <li><a href="#overview" className="hover:text-foreground transition-colors">Documentation</a></li>
+                <li><a href="#components" className="hover:text-foreground transition-colors">Components</a></li>
+                <li><a href="#playground" className="hover:text-foreground transition-colors">Playground</a></li>
+                <li><a href="#accessibility" className="hover:text-foreground transition-colors">Guidelines</a></li>
               </ul>
             </div>
             <div>
               <h4 className="mb-4">Community</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">GitHub</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Figma</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Discord</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Twitter</a></li>
+                <li><a href="https://github.com/pixelpine-ux/Component-Design-System" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a></li>
+                <li><a href="https://www.figma.com/design/Nvm6KDlQocMogpsMf9Djnr/Component-Design-System" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Figma</a></li>
               </ul>
             </div>
             <div>
               <h4 className="mb-4">Legal</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">License</a></li>
+                <li><a href="https://github.com/pixelpine-ux/Component-Design-System/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">License</a></li>
               </ul>
             </div>
           </div>
